@@ -39,9 +39,6 @@ export default function App() {
         <button className="btn btn-danger">Delete</button>
       </li>
     }) }
-    
-    <li>Tomater</li>
   </ul>
-  HI
   </>
 }
