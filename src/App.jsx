@@ -15,6 +15,25 @@ export default function App() {
         completed: false},
       ]
     })
+    setNewTask("")
+  }
+
+  function deleteTask(e) {
+    e.preventDefault()
+    setTasks(oldTasks => {
+      return oldTasks.splice(e.target.value.id,1)
+    })
+  }
+
+  function toggleDone(id, completed) {
+    e.preventDefault()
+    setTasks(oldTasks => {
+      return oldTasks.map(task => {
+      if(task.id === id)
+        return {...task, completed}
+      else return task
+    })
+  })
   }
 
   return <>
@@ -31,12 +50,12 @@ export default function App() {
   <h1 className="header">Task List</h1>
   <ul className="list">
     {tasks.map(task => {
-      return <li>
+      return <li key={task.id}>
         <label>
-          <input type="checkbox" checked={task.completed}/>
+          <input onClick={e => toggleDone(task.id, e.target.checked)} type="checkbox" checked={task.completed}/>
           {task.title}
         </label>
-        <button className="btn btn-danger">Delete</button>
+        <button onClick={deleteTask} className="btn btn-danger">Delete</button>
       </li>
     }) }
   </ul>
