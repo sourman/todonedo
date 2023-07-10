@@ -7,10 +7,11 @@ export default function App() {
   const [tasks, setTasks] = useState([])
   
   function insertTask(e) {
-    e.preventDefault()
+    e.preventDefault() /** Prevent page refresh on submit */
     setTasks(oldTasks => {
       return [
-        ...oldTasks, {id: crypto.randomUUID(),
+        ...oldTasks,
+        {id: crypto.randomUUID(),
         title: newTask,
         completed: false},
       ]
@@ -18,15 +19,13 @@ export default function App() {
     setNewTask("")
   }
 
-  function deleteTask(e) {
-    e.preventDefault()
+  function deleteTask(id) {
     setTasks(oldTasks => {
-      return oldTasks.splice(e.target.value.id,1)
+      return oldTasks.filter(task => task.id !== id)
     })
   }
 
   function toggleDone(id, completed) {
-    e.preventDefault()
     setTasks(oldTasks => {
       return oldTasks.map(task => {
       if(task.id === id)
@@ -52,7 +51,7 @@ export default function App() {
     {tasks.map(task => {
       return <li key={task.id}>
         <label>
-          <input onClick={e => toggleDone(task.id, e.target.checked)} type="checkbox" checked={task.completed}/>
+          <input onChange={e => toggleDone(task.id, e.target.checked)} type="checkbox" checked={task.completed}/>
           {task.title}
         </label>
         <button onClick={deleteTask} className="btn btn-danger">Delete</button>
