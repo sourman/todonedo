@@ -54,7 +54,7 @@ export default function App() {
           <input onChange={e => toggleDone(task.id, e.target.checked)} type="checkbox" checked={task.completed}/>
           {task.title}
         </label>
-        <button onClick={deleteTask} className="btn btn-danger">Delete</button>
+        <button onClick={() => deleteTask(task.id)} className="btn btn-danger">Delete</button>
       </li>
     }) }
   </ul>
