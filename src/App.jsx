@@ -47,6 +47,9 @@ export default function App() {
     <button className="btn">Add</button>
   </form>
   <h1 className="header">Task List</h1>
+  <h3 className="">
+    No Tasks Added Yet!
+  </h3>
   <ul className="list">
     {tasks.map(task => {
       return <li key={task.id}>
