@@ -48,7 +48,7 @@ export default function App() {
   </form>
   <h1 className="header">Task List</h1>
   <h3 className="">
-    No Tasks Added Yet!
+  {tasks.length === 0 && "No Tasks Added Yet"}
   </h3>
   <ul className="list">
     {tasks.map(task => {
