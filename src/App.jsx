@@ -1,23 +1,23 @@
 import { useState } from "react"
+import { TaskForm } from "./TaskForm"
 import "./styles.css"
 
 
 export default function App() {
-  const [newTask, setNewTask] = useState("")
   const [tasks, setTasks] = useState([])
-  
+
   function insertTask(e) {
     e.preventDefault() /** Prevent page refresh on submit */
     setTasks(oldTasks => {
-      return [
+    return [
         ...oldTasks,
         {id: crypto.randomUUID(),
         title: newTask,
         completed: false},
-      ]
+    ]
     })
     setNewTask("")
-  }
+}
 
   function deleteTask(id) {
     setTasks(oldTasks => {
@@ -36,16 +36,7 @@ export default function App() {
   }
 
   return <>
-  <form onSubmit={insertTask} className="new-item-form">
-    <div className="form-row">
-      <label htmlFor="task">New task</label>
-      <input
-      value={newTask}
-      onChange={e => setNewTask(e.target.value)}
-      type="text" id="task"/>
-    </div>
-    <button className="btn">Add</button>
-  </form>
+  <TaskForm insetTaskFunc={insertTask} />
   <h1 className="header">Task List</h1>
   <h3 className="">
   {tasks.length === 0 && "No Tasks Added Yet"}
