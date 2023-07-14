@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { TaskForm } from "./TaskForm"
+import { TaskList } from "./TaskList"
 import "./styles.css"
 
 
@@ -39,16 +40,6 @@ export default function App() {
   <h3 className="">
   {tasks.length === 0 && "No Tasks Added Yet"}
   </h3>
-  <ul className="list">
-    {tasks.map(task => {
-      return <li key={task.id}>
-        <label>
-          <input onChange={e => toggleDone(task.id, e.target.checked)} type="checkbox" checked={task.completed}/>
-          {task.title}
-        </label>
-        <button onClick={() => deleteTask(task.id)} className="btn btn-danger">Delete</button>
-      </li>
-    }) }
-  </ul>
+  <TaskList tasks={tasks} toggleDone={toggleDone} deleteTask={deleteTask}/>
   </>
 }

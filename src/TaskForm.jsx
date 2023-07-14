@@ -1,12 +1,12 @@
 import { useState } from "react"
 
-export function TaskForm(props) {
+export function TaskForm({ insertTaskFunc }) {
     const [newTask, setNewTask] = useState("")
 
     function handleSubmit(e) {
         e.preventDefault()
         if (newTask === "") return
-        props.insertTaskFunc(newTask)
+        insertTaskFunc(newTask)
         setNewTask("") /** Clear the new task field */
     }
 
