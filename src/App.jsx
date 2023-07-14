@@ -6,17 +6,15 @@ import "./styles.css"
 export default function App() {
   const [tasks, setTasks] = useState([])
 
-  function insertTask(e) {
-    e.preventDefault() /** Prevent page refresh on submit */
+  function insertTask(task) {
     setTasks(oldTasks => {
     return [
         ...oldTasks,
         {id: crypto.randomUUID(),
-        title: newTask,
+        title: task,
         completed: false},
     ]
     })
-    setNewTask("")
 }
 
   function deleteTask(id) {
@@ -36,7 +34,7 @@ export default function App() {
   }
 
   return <>
-  <TaskForm insetTaskFunc={insertTask} />
+  <TaskForm insertTaskFunc={insertTask} />
   <h1 className="header">Task List</h1>
   <h3 className="">
   {tasks.length === 0 && "No Tasks Added Yet"}

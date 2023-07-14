@@ -3,7 +3,7 @@ import { useState } from "react"
 export function TaskForm(props) {
     const [newTask, setNewTask] = useState("")
 
-    return <form onSubmit={props.insertTaskFunc} className="new-item-form">
+    return <form onSubmit={() => props.insertTaskFunc(newTask)} className="new-item-form">
         <div className="form-row">
             <label htmlFor="task">New task</label>
             <input
